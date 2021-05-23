@@ -1,27 +1,27 @@
-function(sequelize, DataTypes) {
+module.exports =function(Sequelize, sequelize) {
     return sequelize.define('game', {
         title: {
-            type: DataTypes.STRING(25),
+            type: Sequelize.STRING(25),
             allowNull: false,
         },
 
         owner_id: {
-            type: DataTypes.INTEGER,
+            type: Sequelize.INTEGER,
             allowNull: false
         },
 
         studio: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false,            
         },
 
         esrb_rating: {
-            type: DataTypes.CHAR(5),
+            type: Sequelize.CHAR(5),
             allowNull: false,
         },
 
         user_rating: {
-            type: DataTypes.INTEGER,
+            type: Sequelize.INTEGER,
             allowNull: false,
             validate: {
                 min: 1,
@@ -30,7 +30,7 @@ function(sequelize, DataTypes) {
         },
 
         have_played : {
-            type: DataTypes.BOOLEAN,
+            type: Sequelize.BOOLEAN,
             defaultValue: false,
             allowNull: false
         }
