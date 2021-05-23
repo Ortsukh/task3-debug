@@ -1,10 +1,10 @@
-var router = require('express').Router();
+const router = require('express').Router();
 const db = require('../db');
 
 const Game = db.game
 
 router.get('/all', (req, res) => {
-    Game.findAll({ where: { owner_id: req.body.user.id } })// исправлено req.id
+    Game.findAll({ where: { owner_id: req.user.id } })// исправлено req.id
         .then(
             function findSuccess(data) {
                 res.status(200).json({
@@ -23,7 +23,7 @@ router.get('/all', (req, res) => {
 
 router.get('/:id', (req, res) => {
     
-    Game.findOne({ where: { id: req.params.id, owner_id: req.body.user.id } })// добавлено req.body
+    Game.findOne({ where: { id: req.params.id, owner_id: req.user.id } })// добавлено req.body
         .then(
             function findSuccess(game) {
                 res.status(200).json({
@@ -42,7 +42,7 @@ router.get('/:id', (req, res) => {
 router.post('/create', (req, res) => {
     Game.create({
         title: req.body.game.title,
-        owner_id: req.body.user.id,//
+        owner_id: req.user.id,
         studio: req.body.game.studio,
         esrb_rating: req.body.game.esrb_rating,
         user_rating: req.body.game.user_rating,
@@ -73,7 +73,7 @@ router.put('/update/:id', (req, res) => {
         {
             where: {
                 id: req.params.id,
-                owner_id: req.user
+                owner_id: req.user.id// добавлен id
             }
         })
         .then(

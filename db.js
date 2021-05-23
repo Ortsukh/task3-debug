@@ -6,25 +6,16 @@ const sequelize = new Sequelize('gamedb', 'postgres', 'goodwin1', {
     dialect: 'postgres'
 })
 
-// sequelize.authenticate().then(
-//     function success() {
-//         console.log("Connected to DB");
-//     },
+sequelize.authenticate().then(
+    function success() {
+        console.log("Connected to DB");
+    },
 
-//     function fail(err) {
-//         console.log(`Error: ${err}`);
-//     }
-// )
-const sequelize1 = async (connector) => {
-    try {
-      await connector.authenticate();
-      console.log("Connected!");
-    } catch (err) {
-      console.log(err);
+    function fail(err) {
+        console.log(`Error: ${err}`);
     }
-  };
+)
 
-  sequelize1(sequelize);
 const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize

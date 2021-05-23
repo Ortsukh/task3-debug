@@ -10,7 +10,7 @@ module.exports = function(Sequelize, sequelize) {
             allowNull: false
         },
 
-        passwordHash: {
+        password: {
             type: Sequelize.STRING,
             allowNull: false
         },
